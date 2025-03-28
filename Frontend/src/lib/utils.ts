@@ -6,11 +6,24 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const cleanErrorMessage = (message: string): string => {
+  let cleaned = message.replace(/^Error:\s*/, '');
+  cleaned = cleaned.split(/\s+at\s/)[0];
+  return cleaned.trim();
+};
+
+
 export const displayError = (message: string) => {
-  toast.error(message, {
-    position: "bottom-right",
+  const cleanedMessage = cleanErrorMessage(message);
+  toast.error(cleanedMessage, {
+    position: "top-right",
     autoClose: 3000,
-    hideProgressBar: false,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    className: "bg-red-600 text-white font-semibold",
   });
 };
 
