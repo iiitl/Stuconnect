@@ -6,7 +6,7 @@ import { logoutSuccess, setAccessToken } from '../features/auth/AuthSlice';
 axios.defaults.withCredentials = true;
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL+'/api/v1',
   withCredentials: true, // This ensures cookies are sent with requests
 });
 
